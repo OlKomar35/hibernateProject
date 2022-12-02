@@ -19,13 +19,16 @@ public class Main {
       System.out.println(productDao.findAll());
       System.out.println();
 
-      productDao.save(new Product("Brazil nut", 20));
+      productDao.saveOrUpdate(new Product("Brazil nut", 20));
+
 
       System.out.println(productDao.findAll());
       System.out.println();
 
       productDao.updateNameById(3L, "APPLE");
       System.out.println(productDao.findById(3L));
+
+      productDao.deleteById(4L);
       System.out.println(productDao.findAll());
       System.out.println();
     } catch (Exception e) {

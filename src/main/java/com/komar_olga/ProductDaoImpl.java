@@ -46,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
   }
 
   @Override
-  public void save(Product product) {
+  public void saveOrUpdate(Product product) {
     try (Session session = sessionFactoryUtils.getSession()) {
       session.beginTransaction();
       session.saveOrUpdate(product);
@@ -63,4 +63,15 @@ public class ProductDaoImpl implements ProductDao {
       session.getTransaction().commit();
     }
   }
+
+  @Override
+  public void deleteById(Long id) {
+    try (Session session = sessionFactoryUtils.getSession()) {
+      session.beginTransaction();
+      Product product=session.get(Product.class,id);
+      session.remove(product);
+      session.getTransaction().commit();
+    }
+  }
+
 }
